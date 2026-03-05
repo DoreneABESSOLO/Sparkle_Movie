@@ -1,0 +1,31 @@
+paths:
+  project_root: "."
+  data_root: "data"
+  models_dir: "models"
+
+dataset:
+  movielens_url: "https://files.grouplens.org/datasets/movielens/ml-latest-small.zip"
+  folder_name: "ml-latest-small"  
+  seed: 42
+  split:
+    train_ratio: 0.80
+    val_ratio: 0.10
+
+spark:
+  master: "local[*]"
+  app_name_train: "sparkle-movie-train"
+  app_name_eval: "sparkle-movie-evaluate"
+  shuffle_partitions: 8
+
+als:
+  grid:
+    rank: [10, 20, 50]
+    regParam: [0.01, 0.05, 0.1]
+    maxIter: [10, 15]
+  final_refit_on_trainval: true
+  nonnegative: true
+  cold_start_strategy: "drop"
+
+tfidf:
+  num_features: 4096
+  stopwords: "english"   
